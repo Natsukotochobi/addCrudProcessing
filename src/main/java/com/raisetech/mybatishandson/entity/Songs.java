@@ -14,7 +14,6 @@ public class Songs {
     private String artist;
     @Digits(integer = 4,fraction = 0)
     @Positive
-    @Past
     private int year;
 
     public Songs(){}

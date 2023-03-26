@@ -54,8 +54,9 @@ public class SongsController {
             for (ObjectError error : result.getAllErrors()) {
                 System.out.println(error.getDefaultMessage());
         }}
-        songsService.save(songs);
+            songsService.save(songs);
             return "新規登録されました。";
+
 
 
 
