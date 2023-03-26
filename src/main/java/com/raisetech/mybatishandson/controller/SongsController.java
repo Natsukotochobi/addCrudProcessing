@@ -7,9 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -44,7 +48,15 @@ public class SongsController {
         return new ResponseEntity(body, HttpStatus.NOT_FOUND);
     }
     @PostMapping("/create")
-    public void create(@RequestBody Songs songs){
+    public String create(@Validated @RequestBody Songs songs, BindingResult result){
+        if(result.hasErrors()){
+            List<String> errorList = new ArrayList<>();
+            for (ObjectError error : result.getAllErrors()) {
+                System.out.println(error.getDefaultMessage());
+        }}
         songsService.save(songs);
-    }
-}
+            return "新規登録されました。";
+
+
+
+}}

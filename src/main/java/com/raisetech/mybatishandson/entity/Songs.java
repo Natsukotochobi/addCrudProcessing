@@ -1,10 +1,20 @@
 package com.raisetech.mybatishandson.entity;
 
+import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Songs {
 
     private int id;
+    @NotEmpty
+    @Size(max = 100)
     private String title;
+    @NotEmpty
+    @Size(max = 100)
     private String artist;
+    @Digits(integer = 4,fraction = 0)
+    @Positive
+    @Past
     private int year;
 
     public Songs(){}
