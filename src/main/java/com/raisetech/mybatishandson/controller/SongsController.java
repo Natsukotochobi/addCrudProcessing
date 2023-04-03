@@ -48,14 +48,15 @@ public class SongsController {
         return new ResponseEntity(body, HttpStatus.NOT_FOUND);
     }
     @PostMapping("/create")
-    public String create(@Validated @RequestBody Songs songs, BindingResult result){
+    public void create(@Validated @RequestBody Songs songs, BindingResult result){
         if(result.hasErrors()){
             List<String> errorList = new ArrayList<>();
             for (ObjectError error : result.getAllErrors()) {
                 System.out.println(error.getDefaultMessage());
-        }}
+        } else {
             songsService.save(songs);
-            return "新規登録されました。";
+        }
+           // return "新規登録されました。";
 
 
 
