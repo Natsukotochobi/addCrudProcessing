@@ -5,18 +5,19 @@ import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.service.SongsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class SongsController {
@@ -48,17 +49,31 @@ public class SongsController {
         return new ResponseEntity(body, HttpStatus.NOT_FOUND);
     }
     @PostMapping("/create")
-    public void create(@Validated @RequestBody Songs songs, BindingResult result){
-        if(result.hasErrors()){
-            List<String> errorList = new ArrayList<>();
-            for (ObjectError error : result.getAllErrors()) {
-                System.out.println(error.getDefaultMessage());
-        } else {
+    public void create(@Validated @RequestBody Songs songs){
             songsService.save(songs);
         }
-           // return "新規登録されました。";
+
+    @ExceptionHandler
+    //@Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request) {
+        Map<String, String> invalidParam = new HashMap<>();
+        for (FieldError e : ex.getFieldErrors()) {
+            //logger.error(e.getField() + " : " + e.getDefaultMessage());
+            invalidParam.put(e.getField(), e.getDefaultMessage());
+        }
+        Map<String, Object> body = Map.of(
+                "timeStamp", ZonedDateTime.now().toString(),
+                "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
+                "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                "message", invalidParam
+        );
 
 
+        return ResponseEntity.badRequest().body(body);
 
-
-}}
+    }
+}
