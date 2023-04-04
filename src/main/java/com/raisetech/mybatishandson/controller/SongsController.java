@@ -38,42 +38,11 @@ public class SongsController {
         return Optional.ofNullable(this.songsService.findSongsInfo(published_year));
     }
 
-    @ExceptionHandler(value = ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNoResourceFound(ResourceNotFoundException e, HttpServletRequest request) {
-        Map<String, String> body = Map.of(
-                "timeStamp", ZonedDateTime.now().toString(),
-                "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
-                "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
-                "message", e.getMessage(),
-                "path", request.getRequestURI());
-        return new ResponseEntity(body, HttpStatus.NOT_FOUND);
-    }
+
     @PostMapping("/create")
     public void create(@Validated @RequestBody Songs songs){
             songsService.save(songs);
         }
 
-    @ExceptionHandler
-    //@Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException ex,
-            HttpHeaders headers,
-            HttpStatus status,
-            WebRequest request) {
-        Map<String, String> invalidParam = new HashMap<>();
-        for (FieldError e : ex.getFieldErrors()) {
-            //logger.error(e.getField() + " : " + e.getDefaultMessage());
-            invalidParam.put(e.getField(), e.getDefaultMessage());
-        }
-        Map<String, Object> body = Map.of(
-                "timeStamp", ZonedDateTime.now().toString(),
-                "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
-                "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                "message", invalidParam
-        );
 
-
-        return ResponseEntity.badRequest().body(body);
-
-    }
 }
