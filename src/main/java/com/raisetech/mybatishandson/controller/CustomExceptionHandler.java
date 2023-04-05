@@ -36,16 +36,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             HttpHeaders headers,
             HttpStatus status,
             WebRequest request) {
-        Map<String, String> invalidParam = new HashMap<>();
+        Map<String, String> errors = new HashMap<>();
         for (FieldError e : ex.getFieldErrors()) {
             //logger.error(e.getField() + " : " + e.getDefaultMessage());
-            invalidParam.put(e.getField(), e.getDefaultMessage());
+            errors.put(e.getField(), e.getDefaultMessage());
         }
         Map<String, Object> body = Map.of(
                 "timeStamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
                 "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                "message", invalidParam
+                "message", errors
         );
 
 
