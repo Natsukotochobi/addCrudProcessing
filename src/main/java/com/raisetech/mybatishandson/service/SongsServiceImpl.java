@@ -28,12 +28,19 @@ public class SongsServiceImpl implements SongsService {
         if (songs.isPresent()){
            return songs.get();
         } else {
-            throw new ResourceNotFoundException("resource not found");
+            throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
         }
     }
     @Override
     public void save(Songs songs){
         songsMapper.save(songs);
+    }
+
+    @Override
+    public void deleteById(int id){
+        Optional<Songs> songs = songsMapper.findById(id);
+        songs.orElseThrow(() -> new ResourceNotFoundException("id:" + id + "の曲が見つかりません。"));
+        songsMapper.deleteById(id);
     }
 
 

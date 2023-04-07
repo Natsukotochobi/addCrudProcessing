@@ -39,7 +39,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
         Map<String, String> errors = new HashMap<>();
         for (FieldError e : ex.getFieldErrors()) {
-            //logger.error(e.getField() + " : " + e.getDefaultMessage());
             errors.put(e.getField(), e.getDefaultMessage());
         }
         Map<String, Object> body = Map.of(

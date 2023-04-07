@@ -1,10 +1,7 @@
 package com.raisetech.mybatishandson.mapper;
 
 import com.raisetech.mybatishandson.entity.Songs;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +18,6 @@ public interface SongsMapper {
  @Options(useGeneratedKeys = true, keyColumn = "id")
  void save(Songs songs);
 
+ @Delete("DELETE FROM songs WHERE id = #{id}")
+ void deleteById(int id);
 }

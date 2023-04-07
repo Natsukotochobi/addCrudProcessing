@@ -12,4 +12,6 @@ public interface SongsService {
     Songs findSongsInfo(int year) throws Exception;
 
     void save(Songs songs);
+
+    void deleteById(int id) throws Exception;
 }
