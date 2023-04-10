@@ -3,7 +3,6 @@ package com.raisetech.mybatishandson.service;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.mapper.SongsMapper;
-import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +31,9 @@ public class SongsServiceImpl implements SongsService {
         }
     }
     @Override
-    public void save(Songs songs){
+    public Songs save(Songs songs){
         songsMapper.save(songs);
+        return songs;
     }
 
     @Override

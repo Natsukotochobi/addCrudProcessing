@@ -43,8 +43,8 @@ public class SongsController {
 
     @PostMapping("/create")
     public ResponseEntity create(@Validated @RequestBody Songs songs){
-        songsService.save(songs);
-        URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + songs.getId())
+        Songs newSong = songsService.save(songs);
+        URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + newSong.getId())
                 .build().toUri();
         return ResponseEntity.created(location).build();
         }
