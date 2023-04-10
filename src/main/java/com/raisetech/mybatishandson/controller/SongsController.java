@@ -15,7 +15,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -40,8 +42,11 @@ public class SongsController {
 
 
     @PostMapping("/create")
-    public void create(@Validated @RequestBody Songs songs){
+    public ResponseEntity create(@Validated @RequestBody Songs songs){
         songsService.save(songs);
+        URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + songs.getId())
+                .build().toUri();
+        return ResponseEntity.created(location).build();
         }
 
     @DeleteMapping("/delete/{id}")
