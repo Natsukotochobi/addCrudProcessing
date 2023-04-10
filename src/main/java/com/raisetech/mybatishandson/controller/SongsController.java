@@ -29,13 +29,13 @@ public class SongsController {
     }
 
     @GetMapping("/songs")
-    public List<Songs> getTitles() {
+    public List<Songs> getAllSongs() {
         return songsService.findAll().stream().toList();
     }
 
     @GetMapping("/search")
-    public Optional<Songs> getSongsList(@RequestParam("published_year") int published_year) throws Exception {
-        return Optional.ofNullable(this.songsService.findSongsInfo(published_year));
+    public Optional<Songs> getFindByYear(@RequestParam("published_year") int published_year) throws Exception {
+        return Optional.ofNullable(this.songsService.findByYear(published_year));
     }
 
 
@@ -44,5 +44,9 @@ public class SongsController {
         songsService.save(songs);
         }
 
-    
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteSong(@PathVariable("id") int id) throws Exception {
+        songsService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -12,7 +12,10 @@ public interface SongsMapper {
  List<Songs> findAll();
 
  @Select("SELECT * FROM songs WHERE year = #{year}")
- Optional<Songs> findById(int year);
+ Optional<Songs> findByYear(int year);
+
+ @Select("SELECT * FROM songs WHERE id = #{id}")
+ Optional<Songs> findById(int id);
 
  @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
  @Options(useGeneratedKeys = true, keyColumn = "id")

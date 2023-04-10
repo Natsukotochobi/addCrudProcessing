@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface SongsService {
     List<Songs> findAll();
 
-    Songs findSongsInfo(int year) throws Exception;
+    Songs findByYear(int year) throws Exception;
 
     void save(Songs songs);
 

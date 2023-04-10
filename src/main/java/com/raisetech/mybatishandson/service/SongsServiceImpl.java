@@ -23,8 +23,8 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public Songs findSongsInfo(int year){
-        Optional<Songs> songs = this.songsMapper.findById(year);
+    public Songs findByYear(int year){
+        Optional<Songs> songs = this.songsMapper.findByYear(year);
         if (songs.isPresent()){
            return songs.get();
         } else {
@@ -37,7 +37,7 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public void deleteById(int id){
+    public void deleteById(int id) {
         Optional<Songs> songs = songsMapper.findById(id);
         songs.orElseThrow(() -> new ResourceNotFoundException("id:" + id + "の曲が見つかりません。"));
         songsMapper.deleteById(id);
