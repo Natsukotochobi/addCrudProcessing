@@ -1,5 +1,6 @@
 package com.raisetech.mybatishandson.mapper;
 
+import com.raisetech.mybatishandson.dto.SongsDTO;
 import com.raisetech.mybatishandson.entity.Songs;
 import org.apache.ibatis.annotations.*;
 
@@ -19,8 +20,7 @@ public interface SongsMapper {
 
  @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
  @Options(useGeneratedKeys = true, keyColumn = "id")
- void save(Songs songs);
-
+ SongsDTO save(SongsDTO songsDTO);
  @Delete("DELETE FROM songs WHERE id = #{id}")
  void deleteById(int id);
 }

@@ -1,5 +1,6 @@
 package com.raisetech.mybatishandson.service;
 
+import com.raisetech.mybatishandson.dto.SongsDTO;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.mapper.SongsMapper;
@@ -31,9 +32,9 @@ public class SongsServiceImpl implements SongsService {
         }
     }
     @Override
-    public Songs save(Songs songs){
-        songsMapper.save(songs);
-        return songs;
+    public SongsDTO save(SongsDTO songsDTO){
+        songsMapper.save(songsDTO);
+        return songsDTO;
     }
 
     @Override

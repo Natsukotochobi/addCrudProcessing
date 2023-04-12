@@ -1,5 +1,6 @@
 package com.raisetech.mybatishandson.service;
 
+import com.raisetech.mybatishandson.dto.SongsDTO;
 import com.raisetech.mybatishandson.entity.Songs;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface SongsService {
 
     Songs findByYear(int year) throws Exception;
 
-    Songs save(Songs songs);
+    SongsDTO save(SongsDTO songsDTO);
 
     void deleteById(int id) throws Exception;
 }
