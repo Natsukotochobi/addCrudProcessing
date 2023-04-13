@@ -3,6 +3,7 @@ package com.raisetech.mybatishandson.controller;
 import com.raisetech.mybatishandson.dto.SongsDTO;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
+import com.raisetech.mybatishandson.form.UpdateForm;
 import com.raisetech.mybatishandson.service.SongsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,15 @@ public class SongsController {
                 .build().toUri();
         return ResponseEntity.created(location).build();
         }
+    @PatchMapping("/update/{id}")
+    public ResponseEntity update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm updateForm) throws Exception{
+        SongsDTO sdto = new SongsDTO(
+                updateForm.getTitle(),
+                updateForm.getArtist(),
+                updateForm.getYear());
+        var songs = songsService.update(id, sdto);
+        return ResponseEntity.ok(songs);
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteSong(@PathVariable("id") int id) throws Exception {

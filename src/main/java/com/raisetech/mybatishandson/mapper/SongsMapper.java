@@ -21,6 +21,13 @@ public interface SongsMapper {
  @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
  @Options(useGeneratedKeys = true, keyColumn = "id")
  SongsDTO save(SongsDTO songsDTO);
+
+ @Update("")
+
+
+
+
+ 
  @Delete("DELETE FROM songs WHERE id = #{id}")
  void deleteById(int id);
 }

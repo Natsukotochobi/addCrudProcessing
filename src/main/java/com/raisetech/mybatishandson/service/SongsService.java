@@ -13,5 +13,7 @@ public interface SongsService {
 
     SongsDTO save(SongsDTO songsDTO);
 
+    Songs update(int id, SongsDTO sdto);
+
     void deleteById(int id) throws Exception;
 }

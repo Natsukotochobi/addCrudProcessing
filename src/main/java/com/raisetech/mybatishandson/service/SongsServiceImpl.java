@@ -36,11 +36,17 @@ public class SongsServiceImpl implements SongsService {
         songsMapper.save(songsDTO);
         return songsDTO;
     }
+    @Override
+    public Songs update(int id, SongsDTO sdto){
+        songsMapper.update(id, sdto);
+        Songs songs =  songsMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
+        return songs;
+    }
 
     @Override
     public void deleteById(int id) {
         Optional<Songs> songs = songsMapper.findById(id);
-        songs.orElseThrow(() -> new ResourceNotFoundException("id:" + id + "の曲が見つかりません。"));
+        songs.orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         songsMapper.deleteById(id);
     }
 
