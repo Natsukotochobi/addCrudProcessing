@@ -22,7 +22,19 @@ public interface SongsMapper {
  @Options(useGeneratedKeys = true, keyColumn = "id")
  SongsDTO save(SongsDTO songsDTO);
 
- @Update("")
+ @Update("UPDATE songs SET " +
+         "title = " +
+         "CASE " +
+         "WHEN #{sdto.title} IS NOT NULL THEN #{sdto.title} ELSE title END, " +
+         "artist = " +
+         "CASE " +
+         "WHEN #{sdto.artist} IS NOT NULL THEN #{sdto.artist} ELSE artist END, " +
+         "year = " +
+         "CASE " +
+         "WHEN #{sdto.year} IS NOT NULL THEN #{sdto.year} ELSE year END " +
+         "WHERE id = #{id}")
+ void update(int id, SongsDTO sdto);
+
 
 
 

@@ -56,7 +56,7 @@ public class SongsController {
                 updateForm.getTitle(),
                 updateForm.getArtist(),
                 updateForm.getYear());
-        var songs = songsService.update(id, sdto);
+        Songs songs = songsService.update(id, sdto);
         return ResponseEntity.ok(songs);
     }
 
