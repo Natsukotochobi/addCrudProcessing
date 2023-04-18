@@ -20,7 +20,7 @@ public interface SongsMapper {
 
  @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
  @Options(useGeneratedKeys = true, keyColumn = "id")
- SongsDTO save(SongsDTO songsDTO);
+ void save(SongsDTO sdto);
 
  @Update("UPDATE songs SET " +
          "title = " +

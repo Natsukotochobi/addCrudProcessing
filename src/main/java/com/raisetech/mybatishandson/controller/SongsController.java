@@ -3,6 +3,7 @@ package com.raisetech.mybatishandson.controller;
 import com.raisetech.mybatishandson.dto.SongsDTO;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
+import com.raisetech.mybatishandson.form.InsertForm;
 import com.raisetech.mybatishandson.form.UpdateForm;
 import com.raisetech.mybatishandson.service.SongsService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,9 +45,13 @@ public class SongsController {
 
 
     @PostMapping("/create")
-    public ResponseEntity create(@Validated @RequestBody SongsDTO songsDTO){
-        SongsDTO newSong = songsService.save(songsDTO);
-        URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + newSong.getId())
+    public ResponseEntity create(@Validated @RequestBody InsertForm insertForm){
+        SongsDTO sdto = new SongsDTO(
+                insertForm.getTitle(),
+                insertForm.getArtist(),
+                insertForm.getYear());
+        int newSongId = songsService.save(sdto);
+        URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + newSongId)
                 .build().toUri();
         return ResponseEntity.created(location).build();
         }

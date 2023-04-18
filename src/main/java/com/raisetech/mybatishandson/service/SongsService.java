@@ -11,7 +11,7 @@ public interface SongsService {
 
     Songs findByYear(int year) throws Exception;
 
-    SongsDTO save(SongsDTO songsDTO);
+    int save(SongsDTO sdto);
 
     Songs update(int id, SongsDTO sdto);
 

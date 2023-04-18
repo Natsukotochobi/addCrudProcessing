@@ -32,9 +32,9 @@ public class SongsServiceImpl implements SongsService {
         }
     }
     @Override
-    public SongsDTO save(SongsDTO songsDTO){
-        songsMapper.save(songsDTO);
-        return songsDTO;
+    public int save(SongsDTO sdto){
+        songsMapper.save(sdto);
+        return sdto.getId();
     }
     @Override
     public Songs update(int id, SongsDTO sdto){
