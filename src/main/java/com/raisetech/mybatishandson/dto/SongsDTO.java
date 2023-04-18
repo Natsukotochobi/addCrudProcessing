@@ -4,9 +4,9 @@ public class SongsDTO {
     private int id;
     private String title;
     private String artist;
-    private int year;
+    private String  year;
 
-    public SongsDTO(String title, String artist, int year) {
+    public SongsDTO(String title, String artist, String year) {
         this.id = 0;
         this.title = title;
         this.artist = artist;
@@ -25,7 +25,7 @@ public class SongsDTO {
         return artist;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 }

@@ -31,7 +31,8 @@ public interface SongsMapper {
          "WHEN #{sdto.artist} IS NOT NULL THEN #{sdto.artist} ELSE artist END, " +
          "year = " +
          "CASE " +
-         "WHEN #{sdto.year} IS NOT NULL THEN #{sdto.year} ELSE year END " +
+         "WHEN #{sdto.year} IS NOT NULL" +
+         " THEN #{sdto.year} ELSE year END " +
          "WHERE id = #{id}")
  void update(int id, SongsDTO sdto);
 

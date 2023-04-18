@@ -1,26 +1,21 @@
 package com.raisetech.mybatishandson.form;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class UpdateForm {
-    @NotEmpty
+
     @Size(max = 100)
     private String title;
 
-    @NotEmpty
     @Size(max = 100)
     private String artist;
 
-    @Digits(integer = 4, fraction = 0)
-    @Positive
-    private int year;
+    @Pattern(regexp = "^\\d{4}$")
+    private String year;
 
     public UpdateForm(){};
 
-    public UpdateForm(String title, String artist, int year) {
+    public UpdateForm(String title, String artist, String year) {
         this.title = title;
         this.artist = artist;
         this.year = year;
@@ -34,7 +29,7 @@ public class UpdateForm {
         return artist;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 }
