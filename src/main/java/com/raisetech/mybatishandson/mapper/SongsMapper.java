@@ -19,7 +19,7 @@ public interface SongsMapper {
  Optional<Songs> findById(int id);
 
  @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
- @Options(useGeneratedKeys = true, keyColumn = "id")
+ @Options(useGeneratedKeys = true, keyProperty = "id")
  void save(SongsDTO sdto);
 
  @Update("UPDATE songs SET " +
