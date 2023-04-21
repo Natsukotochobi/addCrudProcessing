@@ -9,7 +9,7 @@ import java.util.List;
 public interface SongsService {
     List<Songs> findAll();
 
-    Songs findByYear(int year) throws Exception;
+    List<Songs> findByYear(int year) throws Exception;
 
     int save(SongsDTO sdto);
 

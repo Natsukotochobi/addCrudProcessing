@@ -23,11 +23,11 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public Songs findByYear(int year){
-        Optional<Songs> songs = this.songsMapper.findByYear(year);
+    public List<Songs> findByYear(int year){
+        Optional<List<Songs>> songs = this.songsMapper.findByYear(year);
         if (songs.isPresent()){
-           return songs.get();
-        } else {
+            return songs.get();
+            } else {
             throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
         }
     }
