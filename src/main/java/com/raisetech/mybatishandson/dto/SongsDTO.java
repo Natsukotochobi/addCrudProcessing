@@ -4,7 +4,7 @@ public class SongsDTO {
     private int id;
     private String title;
     private String artist;
-    private String  year;
+    private String year;
 
     public SongsDTO(String title, String artist, String year) {
         this.id = 0;

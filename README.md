@@ -3,7 +3,7 @@
 ### 実装内容
 #### 第9回の課題で以下を実装した。
 + "/songs"で、データベースから一覧が返ってくる。
-+ "/songs/search?published_year=○○"で、発売年が入っているカラム「year」から、該当するレコードが返ってくる。
++ "/songs/search?year=○○"で、発売年が入っているカラム「year」から、該当するレコードが返ってくる。
   - 該当するレコードがなかった場合は、404エラーが返される。  
 #### これに追加する形で、以下のものを新たに実装。  
 + "/create"で、songsListに新しいレコードを追加する。  
@@ -16,10 +16,10 @@
 ### 実行結果
 ##### ★一覧を取得（/songs）
 ![image](https://user-images.githubusercontent.com/105856391/215997182-84c10ac7-ff8e-4136-8857-87e9da33c278.png)
-#### ★2023年発売のものを取得（/search?published_year=2023）
-![image](https://user-images.githubusercontent.com/105856391/215997398-a11739b4-243c-490a-b4ca-a398d4cb0e14.png)
-#### ★該当するレコードがない場合（/search?published_year=20000）
-![](imgs/![](${addCrudProcessing}/imgs/2023-04-19-12-04-11.png).png) 
+#### ★2023年発売のものを取得（/search?year=2023）
+![](imgs/2023-04-24-10-22-51.png)
+#### ★該当するレコードがない場合（/search?year=202333）
+![](imgs/2023-04-24-10-23-55.png)
 #### ★レコードの新規登録（/create）  
 ![](imgs/2023-04-20-10-00-10.png)  
 ![](imgs/2023-04-20-10-01-40.png)

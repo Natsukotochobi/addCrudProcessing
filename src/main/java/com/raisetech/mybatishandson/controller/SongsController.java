@@ -28,13 +28,13 @@ public class SongsController {
     }
 
     @GetMapping("/search")
-    public Optional<List<Songs>> getFindByYear(@RequestParam("published_year") int published_year) throws Exception {
-        return Optional.ofNullable(this.songsService.findByYear(published_year));
+    public List<Songs> getFindByYear(@RequestParam("year") int year) throws Exception {
+        return songsService.findByYear(year).stream().toList();
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity create(@Validated @RequestBody InsertForm insertForm){
+    public ResponseEntity create(@Validated @RequestBody InsertForm insertForm) {
         SongsDTO sdto = new SongsDTO(
                 insertForm.getTitle(),
                 insertForm.getArtist(),
@@ -43,9 +43,10 @@ public class SongsController {
         URI location = UriComponentsBuilder.fromUriString("http://localohost:8080/create/" + newSongId)
                 .build().toUri();
         return ResponseEntity.created(location).build();
-        }
+    }
+
     @PatchMapping("/update/{id}")
-    public ResponseEntity update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm updateForm) throws Exception{
+    public ResponseEntity update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm updateForm) throws Exception {
         SongsDTO sdto = new SongsDTO(
                 updateForm.getTitle(),
                 updateForm.getArtist(),

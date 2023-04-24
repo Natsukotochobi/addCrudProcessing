@@ -13,7 +13,9 @@ public class UpdateForm {
     @Pattern(regexp = "^\\d{4}$")
     private String year;
 
-    public UpdateForm(){};
+    public UpdateForm() {
+    }
+
 
     public UpdateForm(String title, String artist, String year) {
         this.title = title;

@@ -23,23 +23,25 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public List<Songs> findByYear(int year){
-        Optional<List<Songs>> songs = this.songsMapper.findByYear(year);
-        if (songs.isPresent()){
-            return songs.get();
-            } else {
+    public List<Songs> findByYear(int year) {
+        List<Songs> songs = this.songsMapper.findByYear(year);
+        if (songs.isEmpty()) {
             throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
+        } else {
+            return songs;
         }
     }
+
     @Override
-    public int save(SongsDTO sdto){
+    public int save(SongsDTO sdto) {
         songsMapper.save(sdto);
         return sdto.getId();
     }
+
     @Override
-    public Songs update(int id, SongsDTO sdto){
+    public Songs update(int id, SongsDTO sdto) {
         songsMapper.update(id, sdto);
-        Songs songs =  songsMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
+        Songs songs = songsMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         return songs;
     }
 

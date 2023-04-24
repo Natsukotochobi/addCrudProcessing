@@ -16,7 +16,9 @@ public class InsertForm {
     @Pattern(regexp = "^\\d{4}$")
     private String year;
 
-    public InsertForm(){};
+    public InsertForm() {
+    }
+
 
     public InsertForm(String title, String artist, String year) {
         this.title = title;
@@ -32,7 +34,7 @@ public class InsertForm {
         return artist;
     }
 
-    public String  getYear() {
+    public String getYear() {
         return year;
     }
 }
