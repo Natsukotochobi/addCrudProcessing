@@ -1,11 +1,10 @@
 package com.raisetech.mybatishandson.service;
 
-import com.raisetech.mybatishandson.dto.SongsDTO;
+import com.raisetech.mybatishandson.dto.SongsDto;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.mapper.SongsMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -33,15 +32,16 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public int save(SongsDTO sdto) {
+    public int save(SongsDto sdto) {
         songsMapper.save(sdto);
         return sdto.getId();
     }
 
     @Override
-    public Songs update(int id, SongsDTO sdto) {
+    public Songs update(int id, SongsDto sdto) {
         songsMapper.update(id, sdto);
-        Songs songs = songsMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
+        Songs songs = songsMapper.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         return songs;
     }
 

@@ -12,7 +12,7 @@ public class Songs {
     private String artist;
     private int year;
 
-    public Songs(){}
+    public Songs() {}
 
     public Songs(int id, String title, String artist, int year) {
         this.id = id;

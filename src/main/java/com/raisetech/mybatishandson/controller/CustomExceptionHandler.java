@@ -21,7 +21,8 @@ import java.util.Map;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNoResourceFound(ResourceNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<Map<String, String>> handleNoResourceFound
+            (ResourceNotFoundException e, HttpServletRequest request) {
         Map<String, String> body = Map.of(
                 "timeStamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.NOT_FOUND.value()),

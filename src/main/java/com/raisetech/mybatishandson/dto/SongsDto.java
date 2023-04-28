@@ -1,12 +1,12 @@
 package com.raisetech.mybatishandson.dto;
 
-public class SongsDTO {
+public class SongsDto {
     private int id;
     private String title;
     private String artist;
     private String year;
 
-    public SongsDTO(String title, String artist, String year) {
+    public SongsDto(String title, String artist, String year) {
         this.id = 0;
         this.title = title;
         this.artist = artist;

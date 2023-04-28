@@ -1,6 +1,6 @@
 package com.raisetech.mybatishandson.controller;
 
-import com.raisetech.mybatishandson.dto.SongsDTO;
+import com.raisetech.mybatishandson.dto.SongsDto;
 import com.raisetech.mybatishandson.entity.Songs;
 import com.raisetech.mybatishandson.form.InsertForm;
 import com.raisetech.mybatishandson.form.UpdateForm;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 import java.util.*;
 
@@ -35,7 +34,7 @@ public class SongsController {
 
     @PostMapping("/create")
     public ResponseEntity create(@Validated @RequestBody InsertForm insertForm) {
-        SongsDTO sdto = new SongsDTO(
+        SongsDto sdto = new SongsDto(
                 insertForm.getTitle(),
                 insertForm.getArtist(),
                 insertForm.getYear());
@@ -46,8 +45,9 @@ public class SongsController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm updateForm) throws Exception {
-        SongsDTO sdto = new SongsDTO(
+    public ResponseEntity update(@PathVariable("id") int id,
+                                 @Validated @RequestBody UpdateForm updateForm) throws Exception {
+        SongsDto sdto = new SongsDto(
                 updateForm.getTitle(),
                 updateForm.getArtist(),
                 updateForm.getYear());
