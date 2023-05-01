@@ -1,6 +1,8 @@
 package com.raisetech.mybatishandson.form;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 public class InsertForm {
 

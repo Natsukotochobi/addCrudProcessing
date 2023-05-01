@@ -1,8 +1,5 @@
 package com.raisetech.mybatishandson.entity;
 
-import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Songs {
 
     private int id;

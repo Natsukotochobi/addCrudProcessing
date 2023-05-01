@@ -2,7 +2,12 @@ package com.raisetech.mybatishandson.mapper;
 
 import com.raisetech.mybatishandson.dto.SongsDto;
 import com.raisetech.mybatishandson.entity.Songs;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Options;
 import java.util.List;
 import java.util.Optional;
 
