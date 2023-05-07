@@ -1,18 +1,19 @@
 package com.raisetech.mybatishandson.service;
 
-import com.raisetech.mybatishandson.dto.SongsDto;
-import com.raisetech.mybatishandson.entity.Songs;
+import com.raisetech.mybatishandson.dto.SongDto;
+import com.raisetech.mybatishandson.entity.Song;
+
 import java.util.List;
 
 
 public interface SongsService {
-    List<Songs> findAll();
+    List<Song> findAll();
 
-    List<Songs> findByYear(int year) throws Exception;
+    List<Song> findByYear(int year) throws Exception;
 
-    int save(SongsDto sdto);
+    int save(SongDto sdto);
 
-    Songs update(int id, SongsDto sdto);
+    Song update(int id, SongDto sdto);
 
     void deleteById(int id) throws Exception;
 }

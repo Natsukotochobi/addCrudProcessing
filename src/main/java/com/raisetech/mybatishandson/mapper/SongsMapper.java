@@ -1,7 +1,7 @@
 package com.raisetech.mybatishandson.mapper;
 
-import com.raisetech.mybatishandson.dto.SongsDto;
-import com.raisetech.mybatishandson.entity.Songs;
+import com.raisetech.mybatishandson.dto.SongDto;
+import com.raisetech.mybatishandson.entity.Song;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Insert;
@@ -14,17 +14,17 @@ import java.util.Optional;
 @Mapper // MyBatisのMapperである目印として@Mapperアノテーションを付与する
 public interface SongsMapper {
     @Select("SELECT * FROM songs")
-    List<Songs> findAll();
+    List<Song> findAll();
 
     @Select("SELECT * FROM songs WHERE year = #{year}")
-    List<Songs> findByYear(int year);
+    List<Song> findByYear(int year);
 
     @Select("SELECT * FROM songs WHERE id = #{id}")
-    Optional<Songs> findById(int id);
+    Optional<Song> findById(int id);
 
     @Insert("INSERT INTO songs(title, artist, year) VALUES (#{title}, #{artist}, #{year})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void save(SongsDto sdto);
+    void save(SongDto sdto);
 
     @Update("UPDATE songs SET "
             + "title = "
@@ -38,7 +38,7 @@ public interface SongsMapper {
             + "WHEN #{sdto.year} IS NOT NULL"
             + " THEN #{sdto.year} ELSE year END "
             + "WHERE id = #{id}")
-    void update(int id, SongsDto sdto);
+    void update(int id, SongDto sdto);
 
     @Delete("DELETE FROM songs WHERE id = #{id}")
     void deleteById(int id);

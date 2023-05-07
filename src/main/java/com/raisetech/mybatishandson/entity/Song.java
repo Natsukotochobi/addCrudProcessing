@@ -1,6 +1,6 @@
 package com.raisetech.mybatishandson.entity;
 
-public class Songs {
+public class Song {
 
     private int id;
 
@@ -9,9 +9,9 @@ public class Songs {
     private String artist;
     private int year;
 
-    public Songs() {}
+    public Song() {}
 
-    public Songs(int id, String title, String artist, int year) {
+    public Song(int id, String title, String artist, int year) {
         this.id = id;
         this.title = title;
         this.artist = artist;

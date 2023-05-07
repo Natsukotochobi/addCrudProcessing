@@ -1,7 +1,7 @@
 package com.raisetech.mybatishandson.controller;
 
-import com.raisetech.mybatishandson.dto.SongsDto;
-import com.raisetech.mybatishandson.entity.Songs;
+import com.raisetech.mybatishandson.dto.SongDto;
+import com.raisetech.mybatishandson.entity.Song;
 import com.raisetech.mybatishandson.form.InsertForm;
 import com.raisetech.mybatishandson.form.UpdateForm;
 import com.raisetech.mybatishandson.service.SongsService;
@@ -29,19 +29,19 @@ public class SongsController {
     }
 
     @GetMapping("/songs")
-    public List<Songs> getAllSongs() {
+    public List<Song> getAllSongs() {
         return songsService.findAll().stream().toList();
     }
 
     @GetMapping("/search")
-    public List<Songs> getFindByYear(@RequestParam("year") int year) throws Exception {
+    public List<Song> getFindByYear(@RequestParam("year") int year) throws Exception {
         return songsService.findByYear(year).stream().toList();
     }
 
 
     @PostMapping("/create")
     public ResponseEntity create(@Validated @RequestBody InsertForm insertForm) {
-        SongsDto sdto = new SongsDto(
+        SongDto sdto = new SongDto(
                 insertForm.getTitle(),
                 insertForm.getArtist(),
                 insertForm.getYear());
@@ -54,12 +54,12 @@ public class SongsController {
     @PatchMapping("/update/{id}")
     public ResponseEntity update(@PathVariable("id") int id,
                                  @Validated @RequestBody UpdateForm updateForm) throws Exception {
-        SongsDto sdto = new SongsDto(
+        SongDto sdto = new SongDto(
                 updateForm.getTitle(),
                 updateForm.getArtist(),
                 updateForm.getYear());
-        Songs songs = songsService.update(id, sdto);
-        return ResponseEntity.ok(songs);
+        Song song = songsService.update(id, sdto);
+        return ResponseEntity.ok(song);
     }
 
     @DeleteMapping("/delete/{id}")

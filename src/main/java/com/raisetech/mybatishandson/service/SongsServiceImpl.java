@@ -1,7 +1,7 @@
 package com.raisetech.mybatishandson.service;
 
-import com.raisetech.mybatishandson.dto.SongsDto;
-import com.raisetech.mybatishandson.entity.Songs;
+import com.raisetech.mybatishandson.dto.SongDto;
+import com.raisetech.mybatishandson.entity.Song;
 import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.mapper.SongsMapper;
 import org.springframework.stereotype.Service;
@@ -17,13 +17,13 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public List<Songs> findAll() {
+    public List<Song> findAll() {
         return songsMapper.findAll();
     }
 
     @Override
-    public List<Songs> findByYear(int year) {
-        List<Songs> songs = this.songsMapper.findByYear(year);
+    public List<Song> findByYear(int year) {
+        List<Song> songs = this.songsMapper.findByYear(year);
         if (songs.isEmpty()) {
             throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
         } else {
@@ -32,22 +32,22 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public int save(SongsDto sdto) {
+    public int save(SongDto sdto) {
         songsMapper.save(sdto);
         return sdto.getId();
     }
 
     @Override
-    public Songs update(int id, SongsDto sdto) {
+    public Song update(int id, SongDto sdto) {
         songsMapper.update(id, sdto);
-        Songs songs = songsMapper.findById(id).orElseThrow(() ->
+        Song song = songsMapper.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
-        return songs;
+        return song;
     }
 
     @Override
     public void deleteById(int id) {
-        Optional<Songs> songs = songsMapper.findById(id);
+        Optional<Song> songs = songsMapper.findById(id);
         songs.orElseThrow(() -> new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         songsMapper.deleteById(id);
     }
