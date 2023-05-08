@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/songs")
 public class SongsController {
 
     private final SongsService songsService;
@@ -28,18 +30,18 @@ public class SongsController {
         this.songsService = songsService;
     }
 
-    @GetMapping("/songs")
+    @GetMapping
     public List<Song> getAllSongs() {
         return songsService.findAll().stream().toList();
     }
 
-    @GetMapping("/search")
+    @GetMapping
     public List<Song> getFindByYear(@RequestParam("year") int year) throws Exception {
         return songsService.findByYear(year).stream().toList();
     }
 
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity create(@Validated @RequestBody InsertForm insertForm) {
         SongDto sdto = new SongDto(
                 insertForm.getTitle(),
@@ -51,7 +53,7 @@ public class SongsController {
         return ResponseEntity.created(location).build();
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity update(@PathVariable("id") int id,
                                  @Validated @RequestBody UpdateForm updateForm) throws Exception {
         SongDto sdto = new SongDto(
@@ -62,7 +64,7 @@ public class SongsController {
         return ResponseEntity.ok(song);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteSong(@PathVariable("id") int id) throws Exception {
         songsService.deleteById(id);
         return ResponseEntity.noContent().build();
