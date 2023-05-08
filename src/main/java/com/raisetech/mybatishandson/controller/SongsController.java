@@ -35,13 +35,17 @@ public class SongsController {
         return songsService.findAll().stream().toList();
     }*/
 
-    @GetMapping
+    /*@GetMapping
     public List<Song> getSongs(@RequestParam(value = "year", required = false) int year) throws Exception {
         if(Integer.valueOf(year) == null){
             return songsService.findAll().stream().toList();
         } else {
             return songsService.findByYear(year).stream().toList();
         }
+    }*/
+    @GetMapping
+    public List<Song> getSongs(@RequestParam(value = "year", required = false) int year) throws Exception {
+        return songsService.getSongs(year);
     }
 
 

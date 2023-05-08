@@ -30,6 +30,19 @@ public class SongsServiceImpl implements SongsService {
             return songs;
         }
     }
+    @Override
+    public List<Song> getSongs(int year){
+        if(Integer.valueOf(year) == null){
+            return songsMapper.findAll().stream().toList();
+        }
+        List<Song> songs = this.songsMapper.findByYear(year);
+        if (songs.isEmpty()) {
+            throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
+        } else {
+            return songs.stream().toList();
+        }
+
+    }
 
     @Override
     public int save(SongDto sdto) {
