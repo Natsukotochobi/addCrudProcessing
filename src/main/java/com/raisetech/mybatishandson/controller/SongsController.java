@@ -30,24 +30,11 @@ public class SongsController {
         this.songsService = songsService;
     }
 
-    /*@GetMapping
-    public List<Song> getAllSongs() {
-        return songsService.findAll().stream().toList();
-    }*/
-
-    /*@GetMapping
-    public List<Song> getSongs(@RequestParam(value = "year", required = false) int year) throws Exception {
-        if(Integer.valueOf(year) == null){
-            return songsService.findAll().stream().toList();
-        } else {
-            return songsService.findByYear(year).stream().toList();
-        }
-    }*/
     @GetMapping
-    public List<Song> getSongs(@RequestParam(value = "year", required = false) Integer year) throws Exception {
+    public List<Song> getSongs(@RequestParam(value = "year", required = false) Integer year)
+            throws Exception {
         return songsService.getSongs(year);
     }
-
 
     @PostMapping
     public ResponseEntity create(@Validated @RequestBody InsertForm insertForm) {

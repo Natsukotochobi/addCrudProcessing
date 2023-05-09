@@ -17,22 +17,8 @@ public class SongsServiceImpl implements SongsService {
     }
 
     @Override
-    public List<Song> findAll() {
-        return songsMapper.findAll();
-    }
-
-    @Override
-    public List<Song> findByYear(int year) {
-        List<Song> songs = this.songsMapper.findByYear(year);
-        if (songs.isEmpty()) {
-            throw new ResourceNotFoundException(year + "年の曲は登録されていません。");
-        } else {
-            return songs;
-        }
-    }
-    @Override
-    public List<Song> getSongs(Integer year){
-        if(year == null){
+    public List<Song> getSongs(Integer year) {
+        if (year == null) {
             return songsMapper.findAll().stream().toList();
         }
         List<Song> songs = this.songsMapper.findByYear(year);
