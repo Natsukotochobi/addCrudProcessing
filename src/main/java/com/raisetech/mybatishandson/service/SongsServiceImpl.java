@@ -31,8 +31,8 @@ public class SongsServiceImpl implements SongsService {
         }
     }
     @Override
-    public List<Song> getSongs(int year){
-        if(Integer.valueOf(year) == null){
+    public List<Song> getSongs(Integer year){
+        if(year == null){
             return songsMapper.findAll().stream().toList();
         }
         List<Song> songs = this.songsMapper.findByYear(year);

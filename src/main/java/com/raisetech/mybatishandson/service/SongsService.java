@@ -11,7 +11,7 @@ public interface SongsService {
 
     List<Song> findByYear(int year) throws Exception;
 
-    List<Song> getSongs(int year) throws Exception;
+    List<Song> getSongs(Integer year) throws Exception;
 
     int save(SongDto sdto);
 

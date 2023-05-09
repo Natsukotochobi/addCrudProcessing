@@ -44,7 +44,7 @@ public class SongsController {
         }
     }*/
     @GetMapping
-    public List<Song> getSongs(@RequestParam(value = "year", required = false) int year) throws Exception {
+    public List<Song> getSongs(@RequestParam(value = "year", required = false) Integer year) throws Exception {
         return songsService.getSongs(year);
     }
 

@@ -17,7 +17,7 @@ public interface SongsMapper {
     List<Song> findAll();
 
     @Select("SELECT * FROM songs WHERE year = #{year}")
-    List<Song> findByYear(int year);
+    List<Song> findByYear(Integer year);
 
     @Select("SELECT * FROM songs WHERE id = #{id}")
     Optional<Song> findById(int id);
