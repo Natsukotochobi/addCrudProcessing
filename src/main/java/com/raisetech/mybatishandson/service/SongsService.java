@@ -13,5 +13,7 @@ public interface SongsService {
 
     Song update(int id, SongDto sdto);
 
+    Song update2(int id, SongDto sdto);
+
     void deleteById(int id) throws Exception;
 }

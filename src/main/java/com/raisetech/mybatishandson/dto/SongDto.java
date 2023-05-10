@@ -28,4 +28,16 @@ public class SongDto {
     public String getYear() {
         return year;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
 }
