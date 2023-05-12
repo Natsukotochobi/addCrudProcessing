@@ -48,13 +48,13 @@ public class SongsServiceImpl implements SongsService {
     public Song update(int id, SongDto sdto) {
         Song song = songsMapper.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
-        if (sdto.getTitle().isEmpty()) {
+        if (sdto.getTitle() == null) {
             sdto.setTitle(song.getTitle());
         }
-        if (sdto.getArtist().isEmpty()) {
+        if (sdto.getArtist() == null) {
             sdto.setArtist(song.getArtist());
         }
-        if (sdto.getYear().isEmpty()) {
+        if (sdto.getYear() == null) {
             sdto.setYear(song.getYear());
         }
         songsMapper.update(id, sdto);
