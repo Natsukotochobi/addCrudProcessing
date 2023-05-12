@@ -36,16 +36,16 @@ public class SongsServiceImpl implements SongsService {
         return sdto.getId();
     }
 
-    @Override
+    /*@Override
     public Song update(int id, SongDto sdto) {
         songsMapper.update(id, sdto);
         Song song = songsMapper.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         return song;
-    }
+    }*/
 
     @Override
-    public Song update2(int id, SongDto sdto) {
+    public Song update(int id, SongDto sdto) {
         Song song = songsMapper.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         if (sdto.getTitle().isEmpty()) {
@@ -57,6 +57,12 @@ public class SongsServiceImpl implements SongsService {
         if (sdto.getYear().isEmpty()) {
             sdto.setYear(song.getYear());
         }
+        songsMapper.update(id, sdto);
+        Song updateSong = songsMapper.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
+        return updateSong;
+
+
 
 
     }

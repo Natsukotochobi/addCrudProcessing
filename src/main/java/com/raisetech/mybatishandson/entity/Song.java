@@ -7,11 +7,11 @@ public class Song {
     private String title;
 
     private String artist;
-    private int year;
+    private String year;
 
     public Song() {}
 
-    public Song(int id, String title, String artist, int year) {
+    public Song(int id, String title, String artist, String year) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -30,7 +30,7 @@ public class Song {
         return artist;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -46,7 +46,7 @@ public class Song {
         this.artist = artist;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 }

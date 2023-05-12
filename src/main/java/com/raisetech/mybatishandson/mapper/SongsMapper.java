@@ -26,7 +26,7 @@ public interface SongsMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void save(SongDto sdto);
 
-    @Update("UPDATE songs SET "
+    /*@Update("UPDATE songs SET "
             + "title = "
             + "CASE "
             + "WHEN #{sdto.title} IS NOT NULL THEN #{sdto.title} ELSE title END, "
@@ -37,6 +37,9 @@ public interface SongsMapper {
             + "CASE "
             + "WHEN #{sdto.year} IS NOT NULL"
             + " THEN #{sdto.year} ELSE year END "
+            + "WHERE id = #{id}")
+    void update(int id, SongDto sdto);*/
+    @Update("UPDATE songs SET title = #{sdto.title}, artist = #{sdto.artist}, year = #{sdto.year} "
             + "WHERE id = #{id}")
     void update(int id, SongDto sdto);
 
