@@ -36,14 +36,6 @@ public class SongsServiceImpl implements SongsService {
         return sdto.getId();
     }
 
-    /*@Override
-    public Song update(int id, SongDto sdto) {
-        songsMapper.update(id, sdto);
-        Song song = songsMapper.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
-        return song;
-    }*/
-
     @Override
     public Song update(int id, SongDto sdto) {
         Song song = songsMapper.findById(id).orElseThrow(() ->
@@ -61,10 +53,6 @@ public class SongsServiceImpl implements SongsService {
         Song updateSong = songsMapper.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("id:" + id + "番の曲が見つかりません。"));
         return updateSong;
-
-
-
-
     }
 
     @Override
