@@ -2,7 +2,13 @@ package com.raisetech.mybatishandson.form;
 
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class UpdateForm {
 
     @Size(max = 100)
@@ -14,25 +20,4 @@ public class UpdateForm {
     @Pattern(regexp = "^\\d{4}$")
     private String year;
 
-    public UpdateForm() {
-    }
-
-
-    public UpdateForm(String title, String artist, String year) {
-        this.title = title;
-        this.artist = artist;
-        this.year = year;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public String getYear() {
-        return year;
-    }
 }

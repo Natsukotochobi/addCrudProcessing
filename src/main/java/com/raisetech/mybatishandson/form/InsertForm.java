@@ -3,7 +3,13 @@ package com.raisetech.mybatishandson.form;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class InsertForm {
 
     @NotEmpty
@@ -18,25 +24,4 @@ public class InsertForm {
     @Pattern(regexp = "^\\d{4}$")
     private String year;
 
-    public InsertForm() {
-    }
-
-
-    public InsertForm(String title, String artist, String year) {
-        this.title = title;
-        this.artist = artist;
-        this.year = year;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public String getYear() {
-        return year;
-    }
 }
