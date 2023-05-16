@@ -6,7 +6,7 @@ import com.raisetech.mybatishandson.exception.ResourceNotFoundException;
 import com.raisetech.mybatishandson.mapper.SongsMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @Service
 public class SongsServiceImpl implements SongsService {
@@ -18,7 +18,7 @@ public class SongsServiceImpl implements SongsService {
 
     @Override
     public List<Song> getSongs(Integer year) {
-        if (year == null) {
+        if (Objects.isNull(year)) {
             return songsMapper.findAll().stream().toList();
         }
         List<Song> songs = this.songsMapper.findByYear(year);
