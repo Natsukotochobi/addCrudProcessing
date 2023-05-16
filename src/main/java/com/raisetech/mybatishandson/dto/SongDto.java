@@ -1,6 +1,13 @@
 package com.raisetech.mybatishandson.dto;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class SongDto {
+    @Setter(AccessLevel.NONE)
     private int id;
     private String title;
     private String artist;
@@ -10,34 +17,6 @@ public class SongDto {
         this.id = 0;
         this.title = title;
         this.artist = artist;
-        this.year = year;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public void setYear(String year) {
         this.year = year;
     }
 }
