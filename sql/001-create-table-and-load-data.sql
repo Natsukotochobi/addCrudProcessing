@@ -1,11 +1,13 @@
-DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS songs;
 
-CREATE TABLE movies (
+CREATE TABLE songs (
   id int unsigned AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  director VARCHAR(100) NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  artist VARCHAR(100) NOT NULL,
+  year int(4) NOT NULL,
   PRIMARY KEY(id)
 );
 
-INSERT INTO movies (name, director) VALUES ("ショーシャンクの空に", "フランク・ダラボン");
-INSERT INTO movies (name, director) VALUES ("この世界の片隅に", "片渕須直");
+INSERT INTO songs (title, artist, year) VALUES ("ANTIFRAGILE", "LE SSERAFIM", 2022);
+INSERT INTO songs (title, artist, year) VALUES ("Purple", "woo!ah!", 2021);
+INSERT INTO songs (title, artist, year) VALUES ("Given-Taken", "ENHYPEN", 2020);
